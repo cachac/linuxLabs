@@ -664,18 +664,26 @@ ip address
 # eth0 - ip
 ```
 
-## 15.2. DHCP
-> [info](https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol)
+## 15.2. IP Octets
+
+#.#.#.#/#
 
 ## 15.3. IP Class
 A: 1.0.0.0 to 127.255.255.255
+16 Millones de hosts por red
+
 B: 128.0.0.0 to 191.255.255.255
+65 000 hosts por red
+
 C: 192.0.0.0 to 223.255.255.255
+254 hosts por red
 
 ## 15.4. subnet
 A: /8  - /15 =  131K - 16M ips
-B: /16 - /23 =  65k  - 510 ips
-C: /24 - /32 =  254  - 0   ips
+
+B: /16 - /23 =  510  - 65k ips
+
+C: /24 - /32 =  0    - 254 ips
 
 /28: 14
 /24: 254
@@ -710,14 +718,16 @@ wget https://training.linuxfoundation.org/cm/prep/ready-for.sh
 
 
 # 16. SystemD
-## 16.1. Create service
 ```
 service  --status-all
-sudo vim /etc/systemd/system/hello.service
 ```
 > + = running
 > - = stopped
+## 16.1. Create service
 
+```sh
+sudo vim /etc/systemd/system/hello.service
+```
 
 ```sh
 [Unit]
@@ -763,7 +773,9 @@ ssh-keygen -q -N "" -C "user@mail.com"
 cat mykey
 cat mykey.pub
 # copy mykey.pub
-# paste in remote vim ~/.ssh/authorized_keys
+# paste in remote VM: "vim ~/.ssh/authorized_keys"
+
+# connect
 ssh -i ~/.mykey <USER>@<REMOTE_HOST>
 ```
 > -e 'ssh -i key-name'
@@ -881,17 +893,9 @@ sudo ufw reset
 # Enforcement and Complain
 sudo apparmor_status
 ```
-> SELinux alt
+> Alt: SELinux
 
-# 20. nginx practice
-- let's encrypt
-- load testing hey
-# 21. docker practice
-# 22. git practice
-- using ssh public key
-# 23. mysql practice
-# 24. nfs practice
-# 25. vm cloud practice
+# 20. Optional. vm cloud practice
 - create a vm
 - add a initial script:
   - check if git is installed, if not install it
