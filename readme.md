@@ -528,21 +528,21 @@ sudo apt install -y nodejs
 > Resultado: E: No se encontraron paquetes que coincidan con 'nodejs'
 
 2. Preparación
-  - Actualiza los paquetes
-  - Instala curl, ca-certificates y gnupg: esto es necesario para administrar paquetes de repositorio remoto
-  - GPG es un protocolo de cifrado que se utiliza para verificar la integridad de los paquetes
 ```bash
 sudo apt update
 sudo apt install -y curl ca-certificates gnupg
 ```
+- Actualiza los paquetes
+- Instala curl, ca-certificates y gnupg: esto es necesario para administrar paquetes de repositorio remoto
+ - GPG es un protocolo de cifrado que se utiliza para verificar la integridad de los paquetes
 
 2. Agregar la llave GPG
-- Descarga la llave GPG
-- gpg --dearmor: se encarga de convertir la llave en un archivo .gpg
 ```bash
 curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | \
   sudo gpg --dearmor -o /usr/share/keyrings/nodesource.gpg
 ```
+- Descarga la llave GPG
+- gpg --dearmor: se encarga de convertir la llave en un archivo .gpg
 
 3. Verifica la llave:
 ```bash
