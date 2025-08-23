@@ -376,6 +376,7 @@ passwd super
 exit
 su super
 whoami
+sudo ls /root
 exit
 ```
 > root ALL=(ALL:ALL) ALL The first field indicates the username that the rule will apply to (root).
@@ -417,6 +418,131 @@ touch new-folder/file1
 chown new-user new-folder
 ls -l new-folder
 chown -R new-user new-folder   # recursive
+```
+
+# Practica
+**Objetivo:** Reforzar el manejo de redirecciones, pipes, variables de entorno, procesos, usuarios, permisos y paquetes en Linux.
+## Parte 1: Redirecciones y Pipes (15 min)
+
+1. Ve a al home:
+- usa cd
+- usa ~ ó la variable $HOME
+
+2.Lista los archivos y guarda el resultado en listado.txt.
+- usa ls y > para redireccionar al archivo
+
+3. Agrega una línea que diga "Fin del listado" al final del archivo usando >>.
+
+4. Busca dentro de listado.txt la palabra "log" usando grep.
+
+5. Crea un archivo llamado errores.log al intentar ejecutar un comando incorrecto:
+```
+ls no-existe 2> errores.log
+```
+
+6. Combina salida estándar y errores en un mismo archivo:
+```
+ls no-existe > errores.log 2>&1
+```
+7. Pregunta:
+¿Qué diferencia ves entre usar > y >>?
+
+## Parte 2: Variables de Entorno (5 min)
+1. Crea una variable llamada MI_NOMBRE con su nombre.
+2. Imprímela en pantalla con echo.
+3. Impríme la variable dentro de una oración de la siguiente manera: "mi nombre es <MI_NOMBRE>".
+4. Borra la variable con unset e intenta imprimirla nuevamente.
+5. Pregunta: ¿Cuál es la diferencia entre una variable normal en Bash y una variable exportada con export?
+
+## Parte 3: Procesos (15 min)
+1. Crea un script sleep2.sh que contenga:
+```
+echo "sleeping for 30 seconds"
+sleep 30
+```
+2. Ejecútalo en foreground y suspéndelo con Ctrl+Z.
+3. Verifica con jobs y reanúdalo en foreground (fg).
+4. Ejecuta el mismo script en background con &.
+5. Encuentra el proceso con ps y mándale la señal SIGKILL para terminarlo (kill -9).
+6. Pregunta: ¿Qué diferencia ves entre usar & y no usarlo?
+
+## Parte 4: Usuarios y Permisos (15 min)
+1. Crea un nuevo usuario llamado estudiante
+2. Crea un archivo notas.txt con cualquier texto.
+3. Cámbiale el dueño al usuario estudiante.
+4. Cámbiale los permisos al archivo para que:
+   - El dueño pueda leer y escribir.
+   - El grupo solo pueda leer.
+   - Otros no tengan acceso.
+5. Agrega el usuario estudiante al grupo sudo.
+6. Cambia la contraseña del usuario estudiante a: temp100
+7. Ingresa al usuario root
+8. Regresa al usuario anterior
+9. Ingresa como el usuario estudiante.
+10. Regresa al usuario anterior
+
+## Parte 5: Monitoreo del sistema (10 min)
+1. Abre el monitor interactivo de procesos: htop
+2. Identifica los procesos que más CPU usan.
+3. Identifica los procesos que más memoria consumen.
+4. Observa la parte superior de htop e interpreta el Load Average (carga del sistema).
+   - Primer valor = carga en el último minuto.
+   - Segundo valor = carga en los últimos 5 minutos.
+   - Tercer valor = carga en los últimos 15 minutos.
+5. Abre otra terminal y ejecuta un proceso que consuma CPU (ejemplo: un bucle infinito):
+```
+while true; do sleep 1; done
+```
+6. Observa el htop y observa la carga del sistema.
+7. Mata el proceso con Ctrl+C.
+8. Mide el uso de memoria en MB: free -m
+
+## Parte 6: Paquetes (10 min)
+En este ejercicio vamos a instlar la aplicación cosway
+1. Lista los paquetes instalados relacionados con `cowsay`
+```bash
+dpkg --list | grep cowsay
+```
+2. Instala el paquete cowsay
+3. Ejecuta cowsay
+```bash
+cowsay "Hello World"
+```
+4. Desinstala el paquete cowsay
+
+## Parte 7: Paquetes Avanzado (10 min)
+En este laboratorio vamos a instalar la apliación Docker paso a paso.
+Esta es una instalación mas compleja ya que el instalador no existe en la lista de paquetes de ubuntu.
+
+1. Preparación
+```bash
+# 1) Actualiza índices de las listas de paquetes
+sudo apt-get update
+
+# 2) Paquetes necesarios para repos HTTPS y manejo de llaves.
+# Las llaves son usadas para verificar la autenticidad de los paquetes.
+sudo apt-get install -y ca-certificates curl gnupg
+
+# 3) Crea el directorio seguro de llaveros
+sudo install -m 0755 -d /etc/apt/keyrings
+```
+
+2. Agregar la llave GPG oficial de Docker
+La llave verifica la firma de los paquetes; sin la llave, no confiará en el repo.
+```bash
+# Ubuntu → descarga la llave de Ubuntu
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg \
+  -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+```
+
+3. Agregar el repositorio de Docker
+```bash
+# Ubuntu → agrega el repositorio de Docker
+sudo echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" \
+  > /etc/apt/sources.list.d/docker.list
 ```
 
 
