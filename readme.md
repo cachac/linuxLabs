@@ -291,7 +291,7 @@ sh sleep.sh # run in foreground
 echo "sleep 60" > sleep.sh
 sh sleep.sh
 # ctl + z (to suspend)
-watch ps -lf
+ps -lf
 jobs
 fg %1 # to continue
 watch ps -lf
@@ -303,6 +303,12 @@ kill <pid>
 sh sleep.sh&
 pstree | grep sleep -A1 -B2
 ```
+
+- SIGTERM (15) → pide terminar (por defecto). El proceso puede limpiar recursos antes de salir.
+- SIGKILL (9) → mata inmediatamente, no da chance de limpieza.
+- SIGSTOP (19) → pausa el proceso (equivalente a Ctrl+Z).
+- SIGCONT (18) → reanuda un proceso detenido.
+
 ## 9.1. Load Average
 ```
 htop
@@ -346,6 +352,7 @@ sudo groupdel temp-group
 
 sudo groupadd new-group
 sudo useradd new-user
+newgrp new-group
 
 sudo usermod -aG new-group new-user
 groups new-user
