@@ -420,7 +420,7 @@ ls -l new-folder
 chown -R new-user new-folder   # recursive
 ```
 
-# Practica
+# Práctica
 **Objetivo:** Reforzar el manejo de redirecciones, pipes, variables de entorno, procesos, usuarios, permisos y paquetes en Linux.
 ## Parte 1: Redirecciones y Pipes (15 min)
 
@@ -502,6 +502,8 @@ En este ejercicio vamos a instlar la aplicación cosway
 1. Lista los paquetes instalados relacionados con `cowsay`
 ```bash
 dpkg --list | grep cowsay
+# otra opción para ver los paquetes:
+apt list | grep cowsay
 ```
 2. Instala el paquete cowsay
 3. Ejecuta cowsay
@@ -510,41 +512,71 @@ cowsay "Hello World"
 ```
 4. Desinstala el paquete cowsay
 
-## Parte 7: Paquetes Avanzado (10 min)
-En este laboratorio vamos a instalar la apliación Docker paso a paso.
+## Parte 7: Paquetes Avanzado (15 min)
+En este laboratorio vamos a instalar la apliación NodeJS (JavaScript) paso a paso.
 Esta es una instalación mas compleja ya que el instalador no existe en la lista de paquetes de ubuntu.
 
-1. Preparación
+1. Verifica la lista de paquetes: NodeJS no existe.
 ```bash
-# 1) Actualiza índices de las listas de paquetes
-sudo apt-get update
-
-# 2) Paquetes necesarios para repos HTTPS y manejo de llaves.
-# Las llaves son usadas para verificar la autenticidad de los paquetes.
-sudo apt-get install -y ca-certificates curl gnupg
-
-# 3) Crea el directorio seguro de llaveros
-sudo install -m 0755 -d /etc/apt/keyrings
+apt list | grep nodejs
 ```
 
-2. Agregar la llave GPG oficial de Docker
-La llave verifica la firma de los paquetes; sin la llave, no confiará en el repo.
+1.1 Intenta instalar NodeJS
 ```bash
-# Ubuntu → descarga la llave de Ubuntu
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg \
-  -o /etc/apt/keyrings/docker.asc
-sudo chmod a+r /etc/apt/keyrings/docker.asc
+sudo apt install -y nodejs
+```
+> Resultado: E: No se encontraron paquetes que coincidan con 'nodejs'
+
+2. Preparación
+  - Actualiza los paquetes
+  - Instala curl, ca-certificates y gnupg: esto es necesario para administrar paquetes de repositorio remoto
+  - GPG es un protocolo de cifrado que se utiliza para verificar la integridad de los paquetes
+```bash
+sudo apt update
+sudo apt install -y curl ca-certificates gnupg
 ```
 
-3. Agregar el repositorio de Docker
+2. Agregar la llave GPG
+- Descarga la llave GPG
+- gpg --dearmor: se encarga de convertir la llave en un archivo .gpg
 ```bash
-# Ubuntu → agrega el repositorio de Docker
-sudo echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" \
-  > /etc/apt/sources.list.d/docker.list
+curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | \
+  sudo gpg --dearmor -o /usr/share/keyrings/nodesource.gpg
 ```
 
+3. Verifica la llave:
+```bash
+gpg --show-keys /usr/share/keyrings/nodesource.gpg
+```
+> Salida esperada: gpg: directory '/home/azureuser/.gnupg' created
+
+4. Agregar la lista de paquetes
+- Este comando agrega NodeJS a la lista de paquetes de apt
+```bash
+echo "deb [signed-by=/usr/share/keyrings/nodesource.gpg] \
+https://deb.nodesource.com/node_20.x nodistro main" | \
+  sudo tee /etc/apt/sources.list.d/nodesource.list
+
+```
+5. Actualizar la lista de paquetes y verificar que NodeJS esta disponible
+```bash
+sudo apt update
+apt list | grep nodejs
+```
+
+6. Instalar usando apt
+```bash
+sudo apt install -y nodejs
+```
+
+
+7. Verifica la instalación
+```bash
+node --version
+```
+> Resultado: v20.19.4
+
+> Node Ya esta instalado en la VM!!
 
 # 12. Scripting
 > [hints](https://devhints.io/bash)
