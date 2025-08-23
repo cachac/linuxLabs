@@ -292,7 +292,8 @@ echo "sleep 60" > sleep.sh
 sh sleep.sh
 # ctl + z (to suspend)
 watch ps -lf
-fg # to continue
+jobs
+fg %1 # to continue
 watch ps -lf
 
 echo "sleep 600" > sleep.sh
