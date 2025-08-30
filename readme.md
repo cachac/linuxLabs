@@ -766,6 +766,8 @@ done
 ```
 > sh for.sh
 
+> Modificar el script para que la oración entre por PROMPT.
+
 ## 12.13. while
 while.sh
 ```sh
