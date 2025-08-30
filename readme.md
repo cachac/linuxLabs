@@ -699,6 +699,8 @@ file_count /usr/bin
 ```
 > sh func-var.sh
 
+> Modificar el script para que reciba un argumento y muestre el numero de archivos en el directorio.
+
 ## 12.9. Prompt
 prompt.sh
 ```sh
@@ -711,6 +713,8 @@ echo "YOUR NAME: $NAME"
 ```
 > sh prompt.sh
 
+> Modificar el script para que reciba por PROMPT un directorio y muestre el numero de archivos en el directorio.
+
 ## 12.10. command
 command.sh
 ```sh
@@ -721,7 +725,7 @@ then
   exit 1
 fi
 
-if ! command -v ${1}  2>&1 /dev/null ; then
+if ! command -v "${1}" > /dev/null 2>&1; then
   echo "${1} isnt installed :("
 else
   echo "${1} is installed!!!"
@@ -734,9 +738,21 @@ fi
 string.sh
 ```sh
 #!/bin/bash
-echo $1 | cut -c 1-5
+# Convertir a MAYÚSCULAS
+echo ${2^^}
+# Convertir a minúsculas
+echo ${2,,}
+# Substring (primeras 3 letras del primer argumento)
+echo ${1:0:3}
+# Reemplazo de texto (en $1)
+echo ${1/h/H} # → Hola
+# Concatenar argumentos
+echo "$1 $2"  # → hola mundo
+# Reemplazar espacios por guiones en ambos
+cadena="$1 $2"
+echo ${cadena// /-}  # → hola-mundo
 ```
-> sh string.sh "1 2 3 4 5"
+> sh string.sh "hola" "mundo"
 
 ## 12.12. for
 for.sh
@@ -800,29 +816,31 @@ watch cat  msg.txt
 - /etc/anacrontab
 
 
-# 14. Practice
-- create user: appuser
-- create a group: master
-- add appuser to master group
-- add user to sudo group
-- change appuser password to 12345
-- login to appuser
-- at appuser HOME, create new folder: code
-- change code folder group owner to master
-- change code folder user owner to appuser
-- change code folder permission to group: r, user rwx, other: none
-- at code folder create application.sh. File content:
-  - make it executable (#!/bin/bash)
-  - echo "<DATE> application executed at <HOSTNAME>". Use a hostname command
-  - save echo stdout in app.log
-  - wait for 7 seconds
-- execute application.sh
-- show app.log with "tail -f"
-- create a cron each two minutes executing application.sh
-- check cron logs
-- create a file named tree.txt, and add a soft link to a file named /home/appuser/code/linked
-- list all files (use tree command) then filter by word "app" and save it to tree.txt file
-- show /home/appuser/linked file
+# 14. Práctica
+- crear el usuario: appuser
+- crear el grupo: master
+- agregar appuser al grupo master
+- agregar user al grupo sudo
+- cambiar la contraseña de appuser a 12345
+- iniciar sesión como appuser
+- crear una carpeta llamada code en el HOME de appuser
+- cambiar el grupo del folder code a master
+- cambiar el usuario del folder code a appuser
+- cambiar los permisos del folder code a group: r, user rwx, other: none
+- en el folder code crear application.sh. File content:
+  - agregar el encabezado (#!/bin/bash)
+  - echo "<DATE> application executed at <HOSTNAME>". Use el comando hostname
+  - guardar echo stdout en app.log
+  - esperar 7 segundos
+- ejecutar application.sh
+- en la terminal mostrar app.log con "tail -f"
+- crear un cron cada dos minutos ejecutando application.sh
+- revisar los cron logs
+- crear un archivo llamado tree.txt, y agregar un soft link a otro archivo con el nombre /home/appuser/code/linked
+- listar todos los archivos (use el comando tree) y filtrar por la palabra "app" y guardar el resultado en tree.txt
+- mostrar el contenido del archivo /home/appuser/linked
+
+
 # 15. Basic networking
 ## 15.1. IP Addresses
 ```
