@@ -420,9 +420,9 @@ ls -l new-folder
 chown -R new-user new-folder   # recursive
 ```
 
-# Práctica
+# 12. Práctica
 **Objetivo:** Reforzar el manejo de redirecciones, pipes, variables de entorno, procesos, usuarios, permisos y paquetes en Linux.
-## Parte 1: Redirecciones y Pipes (15 min)
+## 12.1. Parte 1: Redirecciones y Pipes (15 min)
 
 1. Ve a al home:
 - usa cd
@@ -447,14 +447,14 @@ ls no-existe > errores.log 2>&1
 7. Pregunta:
 ¿Qué diferencia ves entre usar > y >>?
 
-## Parte 2: Variables de Entorno (5 min)
+## 12.2. Parte 2: Variables de Entorno (5 min)
 1. Crea una variable llamada MI_NOMBRE con su nombre.
 2. Imprímela en pantalla con echo.
 3. Impríme la variable dentro de una oración de la siguiente manera: "mi nombre es <MI_NOMBRE>".
 4. Borra la variable con unset e intenta imprimirla nuevamente.
 5. Pregunta: ¿Cuál es la diferencia entre una variable normal en Bash y una variable exportada con export?
 
-## Parte 3: Procesos (15 min)
+## 12.3. Parte 3: Procesos (15 min)
 1. Crea un script sleep2.sh que contenga:
 ```
 echo "sleeping for 30 seconds"
@@ -466,7 +466,7 @@ sleep 30
 5. Encuentra el proceso con ps y mándale la señal SIGKILL para terminarlo (kill -9).
 6. Pregunta: ¿Qué diferencia ves entre usar & y no usarlo?
 
-## Parte 4: Usuarios y Permisos (15 min)
+## 12.4. Parte 4: Usuarios y Permisos (15 min)
 1. Crea un nuevo usuario llamado estudiante
 2. Crea un archivo notas.txt con cualquier texto.
 3. Cámbiale el dueño al usuario estudiante.
@@ -481,7 +481,7 @@ sleep 30
 9. Ingresa como el usuario estudiante.
 10. Regresa al usuario anterior
 
-## Parte 5: Monitoreo del sistema (10 min)
+## 12.5. Parte 5: Monitoreo del sistema (10 min)
 1. Abre el monitor interactivo de procesos: htop
 2. Identifica los procesos que más CPU usan.
 3. Identifica los procesos que más memoria consumen.
@@ -497,7 +497,7 @@ while true; do sleep 1; done
 7. Mata el proceso con Ctrl+C.
 8. Mide el uso de memoria en MB: free -m
 
-## Parte 6: Paquetes (10 min)
+## 12.6. Parte 6: Paquetes (10 min)
 En este ejercicio vamos a instlar la aplicación cosway
 1. Lista los paquetes instalados relacionados con `cowsay`
 ```bash
@@ -512,7 +512,7 @@ cowsay "Hello World"
 ```
 4. Desinstala el paquete cowsay
 
-## Parte 7: Paquetes Avanzado (15 min)
+## 12.7. Parte 7: Paquetes Avanzado (15 min)
 En este laboratorio vamos a instalar la apliación NodeJS (JavaScript) paso a paso.
 Esta es una instalación mas compleja ya que el instalador no existe en la lista de paquetes de ubuntu.
 
@@ -578,9 +578,9 @@ node --version
 
 > Node Ya esta instalado en la VM!!
 
-# 12. Scripting
+# 13. Scripting
 > [hints](https://devhints.io/bash)
-## 12.1. first.sh
+## 13.1. first.sh
 ```
 #!/bin/bash
 echo "My first shell script"
@@ -595,7 +595,7 @@ chmod 700 first.sh
 ./first.sh
 ```
 
-## 12.2. vars
+## 13.2. vars
 vars.sh
 ```sh
 #!/bin/bash
@@ -604,7 +604,7 @@ echo "My name is $NAME"
 ```
 > sh vars.sh
 
-## 12.3. System functions
+## 13.3. System functions
 sysfunc.sh
 ```sh
 #!/bin/bash
@@ -614,7 +614,7 @@ echo "$MY_ENV" > local-env
 > sh sysfunc.sh
 > cat local-env
 
-## 12.4. input
+## 13.4. input
 input.sh
 ```sh
 #!/bin/bash
@@ -628,7 +628,7 @@ echo "my input = $INPUT"
 > $* = all params
 > $# = number args
 
-## 12.5. Conditionals
+## 13.5. Conditionals
 cond.sh
 ```sh
 #!/bin/bash
@@ -655,7 +655,7 @@ fi
 > -gt = greather than
 > -lt = less than
 
-## 12.6. Files
+## 13.6. Files
 files.sh
 ```sh
 #!/bin/bash
@@ -670,7 +670,7 @@ fi
 > sh files.sh
 
 
-## 12.7. Functions
+## 13.7. Functions
 func.sh
 ```sh
 #!/bin/bash
@@ -683,7 +683,7 @@ file_count
 ```
 > sh func.sh
 
-## 12.8. Functions and arguments
+## 13.8. Functions and arguments
 func-var.sh
 ```sh
 #!/bin/bash
@@ -701,7 +701,7 @@ file_count /usr/bin
 
 > Modificar el script para que reciba un argumento y muestre el numero de archivos en el directorio.
 
-## 12.9. Prompt
+## 13.9. Prompt
 prompt.sh
 ```sh
 #!/bin/bash
@@ -715,7 +715,7 @@ echo "YOUR NAME: $NAME"
 
 > Modificar el script para que reciba por PROMPT un directorio y muestre el numero de archivos en el directorio.
 
-## 12.10. command
+## 13.10. command
 command.sh
 ```sh
 #!/bin/bash
@@ -734,7 +734,7 @@ fi
 > sh command.sh wget
 > sh command.sh docker
 
-## 12.11. string
+## 13.11. string
 string.sh
 ```sh
 #!/bin/bash
@@ -754,7 +754,7 @@ echo ${cadena// /-}  # → hola-mundo
 ```
 > sh string.sh "hola" "mundo"
 
-## 12.12. for
+## 13.12. for
 for.sh
 ```sh
 #!/bin/bash
@@ -768,7 +768,7 @@ done
 
 > Modificar el script para que la oración entre por PROMPT.
 
-## 12.13. while
+## 13.13. while
 while.sh
 ```sh
 #!/bin/bash
@@ -800,7 +800,7 @@ fi
 > sh while.sh localhost
 > sh while.sh nohost
 
-# 13. Cron
+# 14. Cron
 > [crontab.guru](https://crontab.guru/#*_*_*_*_*)
 ```
 
@@ -818,43 +818,78 @@ watch cat  msg.txt
 - /etc/anacrontab
 
 
-# 14. Práctica
-- crear el usuario: appuser
-- crear el grupo: master
-- agregar appuser al grupo master
-- agregar user al grupo sudo
-- cambiar la contraseña de appuser a 12345
-- iniciar sesión como appuser
-- crear una carpeta llamada code en el HOME de appuser
-- cambiar el grupo del folder code a master
-- cambiar el usuario del folder code a appuser
-- cambiar los permisos del folder code a group: r, user rwx, other: none
-- en el folder code crear application.sh. File content:
-  - agregar el encabezado (#!/bin/bash)
-  - echo "<DATE> application executed at <HOSTNAME>". Use el comando hostname
-  - guardar echo stdout en app.log
-  - esperar 7 segundos
-- ejecutar application.sh
-- en la terminal mostrar app.log con "tail -f"
-- crear un cron cada dos minutos ejecutando application.sh
-- revisar los cron logs
-- crear un archivo llamado tree.txt, y agregar un soft link a otro archivo con el nombre /home/appuser/code/linked
-- listar todos los archivos (use el comando tree) y filtrar por la palabra "app" y guardar el resultado en tree.txt
-- mostrar el contenido del archivo /home/appuser/linked
+# 15. Práctica
+Objetivo: Aplicar conceptos de usuarios, grupos, permisos, scripting, enlaces simbólicos y tareas programadas.
 
 
-# 15. Basic networking
-## 15.1. IP Addresses
+## 15.1. Parte 1: Usuarios y Grupos (10 min)
+1. Crear un usuario llamado *appuser*.
+2. Crear un grupo llamado *master*.
+3. Agregar el usuario *appuser* al grupo *master*.
+4. Agregar el usuario *appuser* al grupo *sudo*.
+5. Asignarle al usuario *appuser* la contraseña *12345*.
+
+## 15.2. Parte 2: Sesión y directorio de trabajo (10 min)
+1. Iniciar sesión como *appuser*
+2. Crear una carpeta llamada *code* en el HOME de *appuser*
+3. Cambiar el grupo del folder *code* a *master*
+4. Cambiar el usuario del folder *code* a *appuser*
+5. Cambiar los permisos del folder *code* como se muestra:
+```sh
+group: r
+user: rwx
+other: none
+```
+
+## 15.3. Parte 3: Scripting (15 min)
+1. Dentro de la carpeta code, crear un archivo llamado *application.sh*
+2. Agregar el encabezado estándar de un script Bash (#!/bin/bash).
+3. El script debe recibir un argumento que sera el nombre del usuario que ejecuta el script.
+4. El nombre del usuario debe ser ingresado por PROMPT. Usar el comando `read`.
+5. Debe validar que el script reciba el argumento, si no lo recibe, debe mostrar un mensaje de error y salir. Usar `if [ $# -eq 0 ]`
+6. Hacer que el script imprima un mensaje que incluya el texto "application executed at", el nombre del host, la fecha actual y el nombre del usuario que ejecuta el script. Por ejemplo:
+Donde "Mi-Computadora" es el nombre del host, "USER" es el nombre del usuario que ejecuta el script y "FECHA" es la fecha actual.
+Para el nombre del host puede usar el comando `hostname`. Para la fecha actual puede usar el comando `date`.
+```sh
+FECHA: application executed at Mi-Computadora, by USER
+```
+1. Guardar el mensaje generado por el script en un archivo llamado *app.log* /tmp/app.log.
+2. Agregar un *while* para que el mensaje se repita cada 5 segundos un total de 10 veces.
+3. Al final escribir en el log "application finished."
+4. Ejecutar el script para comprobar que funciona.
+5. Visualizar el contenido de *app.log* de forma que muestre las nuevas entradas en tiempo real. Use el comando **tail -f**.
+6. Cerrar el tail (Ctrl + C)
+7.  Asegurarse que si el script se ejecuta varias veces, el log mantenga el historial de todas las ejecuciones.
+
+## 15.4. Parte 4: Scripting 2 (30 min)
+Objetivo: Modificar el script application.sh para que verifique cuántas líneas tiene app.log, y si supera un límite (por ejemplo 15 líneas), el script debe archivarlo y crear uno nuevo.
+1. En el mismo script *application.sh* debe contar cuántas líneas tiene el archivo *app.log*
+2. Si la cantidad de líneas es igual o mayor a **15**, debe renombrar el archivo *app.log* como *app.log.bak*.
+3. Al final del archivo renombrado *app.log.bak* debe editar la última línea cambiando la palabra "finished" por "rotated"
+4. Después de realizar la rotación, el script debe continuar su ejecución normal
+
+## 15.5. Parte 5: Cron (15 min)
+1. Crear un cron cada dos minutos ejecutando application.sh
+2. Revisar los cron logs
+3. Revisar el archivo app.log
+4. Revisar el archivo app.log.bak
+
+# 16. Opcional, Mas ejecicios
+- https://www.w3schools.com/bash/bash_exercises.php
+
+
+# 17. Basic networking
+## 17.1. IP Addresses
 ```
 ip address
 # eth0 - ip
 ```
 
-## 15.2. IP Octets
+## 17.2. IP Octets
 
 #.#.#.#/#
 
-## 15.3. IP Class
+## 17.3. IP Class
 A: 1.0.0.0 to 127.255.255.255
 16 Millones de hosts por red
 
@@ -864,7 +899,7 @@ B: 128.0.0.0 to 191.255.255.255
 C: 192.0.0.0 to 223.255.255.255
 254 hosts por red
 
-## 15.4. subnet
+## 17.4. subnet
 A: /8  - /15 =  131K - 16M ips
 
 B: /16 - /23 =  510  - 65k ips
@@ -877,7 +912,7 @@ C: /24 - /32 =  0    - 254 ips
 /16: 65.534
 
 
-## 15.5. Name Resolution
+## 17.5. Name Resolution
 > [info](https://en.wikipedia.org/wiki/Domain_Name_System)
 ```
 ping linuxfoundation.org
@@ -893,7 +928,7 @@ host linuxfoundation.org
 nslookup linuxfoundation.org
 ```
 
-## 15.6. Routing
+## 17.6. Routing
 ```
 ip address
 ip route
@@ -903,13 +938,13 @@ wget https://training.linuxfoundation.org/cm/prep/ready-for.sh
 ```
 
 
-# 16. SystemD
+# 18. SystemD
 ```
 service  --status-all
 ```
 > + = running
 > - = stopped
-## 16.1. Create service
+## 18.1. Create service
 
 ```sh
 sudo vim /etc/systemd/system/hello.service
@@ -940,7 +975,7 @@ sudo systemctl disable hello.service
 sudo systemctl stop hello.service
 ```
 
-# 17. ssh
+# 19. ssh
 ```
 cat /etc/ssh/sshd_config
 # Port 22
@@ -966,8 +1001,8 @@ ssh -i ~/.mykey <USER>@<REMOTE_HOST>
 ```
 > -e 'ssh -i key-name'
 
-# 18. Compression and backup
-## 18.1. zip
+# 20. Compression and backup
+## 20.1. zip
 ```
 # file
 gzip listings
@@ -989,7 +1024,7 @@ rm -rf bigfiles
 # untar folder
 tar xvf big.tar.gz
 ```
-## 18.2. rsync
+## 20.2. rsync
 > [rsync examples](https://www.tecmint.com/rsync-local-remote-file-synchronization-commands/)
 ```
 mkdir -p /tmp/backups
@@ -1005,14 +1040,14 @@ rsync -avzhe ssh --progress  <USER>@<REMOTE_HOST>:/tmp/backups   /tmp/backups
 #                               REMOTE USER      : REMOTE FOLDER  LOCAL FOLDER
 ```
 
-# 19. Basic security
-## 19.1. logs
+# 21. Basic security
+## 21.1. logs
 ```
 tail -fn 10 /var/log/auth.log
 tail -fn 10 /var/log/syslog
 journalctl
 ```
-## 19.2. password
+## 21.2. password
 ```
 passwd ubuntu
 passwd -l ubuntu
@@ -1045,7 +1080,7 @@ passwd
 > unlock_time = unlock
 
 
-## 19.3. firewall
+## 21.3. firewall
 ```
 sudo systemctl status ufw
 sudo ufw status
@@ -1074,14 +1109,14 @@ sudo ufw disable
 sudo ufw reset
 ```
 
-## 19.4. Hardening
+## 21.4. Hardening
 ```
 # Enforcement and Complain
 sudo apparmor_status
 ```
 > Alt: SELinux
 
-# 20. Optional. vm cloud practice
+# 22. Optional. vm cloud practice
 - create a vm
 - add a initial script:
   - check if git is installed, if not install it
